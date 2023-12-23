@@ -10,7 +10,6 @@ import icon from 'astro-icon';
 import tasks from './src/utils/tasks';
 import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin } from './src/utils/frontmatter.mjs';
 import { ANALYTICS, SITE } from './src/utils/config.ts';
-import { sanityIntegration } from '@sanity/astro';
 import react from "@astrojs/react";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -40,12 +39,6 @@ export default defineConfig({
     JavaScript: true,
     SVG: true,
     Logger: 1
-  }), sanityIntegration({
-    projectId: 'yxcxwx9i',
-    dataset: 'production',
-    useCdn: false,
-    // Access the Studio on your.url/admin
-    studioBasePath: "/admin",
   }),react(),],
  
   markdown: {
