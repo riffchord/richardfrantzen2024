@@ -4,7 +4,7 @@ import type { CollectionEntry } from 'astro:content';
 import type { Post } from '~/types';
 import { APP_BLOG } from '~/utils/config';
 import { cleanSlug, trimSlash, BLOG_BASE, POST_PERMALINK_PATTERN, CATEGORY_BASE, TAG_BASE } from './permalinks';
-
+  import {getAllPosts} from '~/sanity/api.js'
 const generatePermalink = async ({
   id,
   slug,
@@ -92,6 +92,7 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> =
 
 const load = async function (): Promise<Array<Post>> {
   const posts = await getCollection('post');
+ 
   const normalizedPosts = posts.map(async (post) => await getNormalizedPost(post));
 
   const results = (await Promise.all(normalizedPosts))
@@ -121,6 +122,9 @@ export const blogPostsPerPage = APP_BLOG?.postsPerPage;
 export const fetchPosts = async (): Promise<Array<Post>> => {
   if (!_posts) {
     _posts = await load();
+  
+
+
   }
 
   return _posts;

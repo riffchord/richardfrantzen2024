@@ -1,7 +1,13 @@
 ---
 import { SITE } from '~/utils/config';
+import { Image } from 'astro:assets';
+import logo from '~/assets/images/richard-frantzen-virtual-production-white.png';
 ---
 
 <span class="self-center ml-2 rtl:ml-0 rtl:mr-2 text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white">
-  🚀 {SITE?.name}
+  <Image
+  src={logo} 
+  alt="Richard Frantzen Virtual Production"
+  width="200"
+/>
 </span>

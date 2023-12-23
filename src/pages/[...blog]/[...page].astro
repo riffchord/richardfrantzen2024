@@ -20,6 +20,8 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 const { page } = Astro.props as Props;
 const currentPage = page.currentPage ?? 1;
 
+const posts = await sanityClient.fetch(`*[_type == "post" && defined(slug)] | order(publishedAt desc)`);
+
 // const allCategories = await findCategories();
 // const allTags = await findTags();
 
