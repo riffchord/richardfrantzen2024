@@ -1,21 +1,12 @@
-# Use the official lightweight Node.js image.
-# https://hub.docker.com/_/node
-FROM node:18
+FROM node:lts AS runtime
+WORKDIR /app
 
-# Set the working directory in the container
-WORKDIR /usr/src/app
-
-# Copy package.json and package-lock.json to work directory
-COPY package*.json ./
-
-# Install dependencies
-RUN npm install --legacy-peer-deps
-
-# Copy local code to the container
 COPY . .
 
-# Build the app
+RUN npm install --legacy-peer-deps
 RUN npm run build
 
-# Start the app
-CMD ["npm", "start"]
+ENV HOST=0.0.0.0
+ENV PORT=4321
+EXPOSE 4321
+CMD node ./dist/server/entry.mjs
