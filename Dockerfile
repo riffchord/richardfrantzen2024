@@ -1,5 +1,5 @@
 # Use a specific version of Node.js (Alpine)
-FROM node:18.14.1-alpine AS runtime
+FROM node:1 AS runtime
 
 WORKDIR /app
 
